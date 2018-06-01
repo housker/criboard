@@ -6,7 +6,6 @@
 //   DBPORT: process.env.RDS_PORT || ''
 // };
 
-
 // module.exports = {
 //   DBNAME: 'sa',
 //   DBUSERNAME: 'criboard',
