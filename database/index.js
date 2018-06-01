@@ -11,7 +11,6 @@ var connection = new Sequelize(db.DBNAME, db.DBUSERNAME, db.DBPASSWORD, {
   //   ssl: 'Amazon RDS'
   // }
 
-// var connection = new Sequelize(process.env.DATABASE_URL);
 
 var connection = new Sequelize(process.env.DATABASE_URL);
 
