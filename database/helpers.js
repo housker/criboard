@@ -127,6 +127,7 @@ var fetchActivity = (callback) => {
   });
 };
 
+
 var getAddress = (user, cb) => {
   User.findOne({
     where: {username: user}
