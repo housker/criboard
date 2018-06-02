@@ -24,6 +24,7 @@ class Dashboard extends React.Component {
       address: result.data.address,
       latitude: result.data.latitude,
       longitude: result.data.longitude
+<<<<<<< HEAD
       }, () => {
         var mymap = L.map('mapid').setView([this.state.latitude, this.state.longitude], 15);
         var marker = L.marker([this.state.latitude, this.state.longitude]).addTo(mymap);
@@ -44,10 +45,30 @@ class Dashboard extends React.Component {
 
 
       // });
+=======
+      }, function() => {
+
+    var mymap = L.map('mapid').setView([this.state.latitude, longitude], 15);
+    var marker = L.marker([latitude, longitude]).addTo(mymap);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoiaG91c2tlciIsImEiOiJjamh2aXMwODcwem5uM2twMzA3cmZsbnBvIn0.rz3s-qyoAcFzzrOd91YdYg'
+    }).addTo(mymap);
+
+
+      });
+>>>>>>> dashboard pulls from databse
       // axios.get('/getaddress')
       // .then(result => {
       //   // result.data should have latitude, longitude, address
           // use this to setState
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> dashboard pulls from databse
       // })
     });
 

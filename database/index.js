@@ -10,6 +10,10 @@ var connection = new Sequelize(db.DBNAME, db.DBUSERNAME, db.DBPASSWORD, {
   // dialectOptions: {
   //   ssl: 'Amazon RDS'
   // }
+<<<<<<< HEAD
+=======
+});
+>>>>>>> dashboard pulls from databse
 
 // var connection = new Sequelize(process.env.DATABASE_URL);
 

@@ -203,6 +203,11 @@ var fetchActivity = (callback) => {
 
 // fetchActivity('Yoshi')
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> dashboard pulls from databse
 var getAddress = (user, cb) => {
   User.findOne({
     where: {username: user}
@@ -543,6 +548,10 @@ module.exports = {
   findGroups: findGroups,
   fetchUsersByGroup: fetchUsersByGroup,
   postAddress: postAddress,
+<<<<<<< HEAD
   delGroup: delGroup,
+=======
+  delGroup: delGroup
+>>>>>>> dashboard pulls from databse
   getAddress: getAddress
 };
