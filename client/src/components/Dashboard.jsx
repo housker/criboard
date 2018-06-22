@@ -24,8 +24,6 @@ class Dashboard extends React.Component {
       address: result.data.address,
       latitude: result.data.latitude,
       longitude: result.data.longitude
-      }, function() => {
-
       }, () => {
         var mymap = L.map('mapid').setView([this.state.latitude, this.state.longitude], 15);
         var marker = L.marker([this.state.latitude, this.state.longitude]).addTo(mymap);
@@ -51,7 +49,6 @@ class Dashboard extends React.Component {
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoiaG91c2tlciIsImEiOiJjamh2aXMwODcwem5uM2twMzA3cmZsbnBvIn0.rz3s-qyoAcFzzrOd91YdYg'
     }).addTo(mymap);
-      });
       var mymap = L.map('mapid').setView([this.state.latitude, this.state.longitude], 15);
       var marker = L.marker([this.state.latitude, this.state.longitude]).addTo(mymap);
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
