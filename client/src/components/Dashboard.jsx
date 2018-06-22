@@ -19,12 +19,6 @@ class Dashboard extends React.Component {
   componentDidMount() {
     axios.get('/getaddress')
     .then(result => {
-<<<<<<< HEAD
-      console.log('inside')
-      console.log('result.data')
-=======
-      console.log('result.data', result.data)
->>>>>>> 366c679204f4926f2dbdc4b8c4bb9bfc0798f056
       this.setState({
       user: result.data.username,
       address: result.data.address,
@@ -39,33 +33,7 @@ class Dashboard extends React.Component {
             id: 'mapbox.streets',
             accessToken: 'pk.eyJ1IjoiaG91c2tlciIsImEiOiJjamh2aXMwODcwem5uM2twMzA3cmZsbnBvIn0.rz3s-qyoAcFzzrOd91YdYg'
         }).addTo(mymap);
-<<<<<<< HEAD
-
-      });
-
-      // axios.get('/getaddress')
-      // .then(result => {
-      //   // result.data should have latitude, longitude, address
-          // use this to setState
-
-
-
-      // });
-      // axios.get('/getaddress')
-      // .then(result => {
-      //   // result.data should have latitude, longitude, address
-          // use this to setState
-      });
-      // axios.get('/getaddress')
-      // .then(result => {
-      //   // result.data should have latitude, longitude, address
-          // use this to setState
-      // })
-    // });
-=======
     });
->>>>>>> 366c679204f4926f2dbdc4b8c4bb9bfc0798f056
-
   }
 
   render() {

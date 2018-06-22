@@ -221,14 +221,8 @@ app.get('/getuser', function(req, res) {
 });
 
 app.get('/getaddress', function(req, res) {
-<<<<<<< HEAD
-  console.log('inside the get address+++++++++++++++++')
-  console.log('req.user: ', req.user)
-  db.getAddress(req.user, function(results) {
-=======
   var username = req.user;
   db.getAddress(username, function(results) {
->>>>>>> 366c679204f4926f2dbdc4b8c4bb9bfc0798f056
     res.status(200).send(results);
   })
 });
