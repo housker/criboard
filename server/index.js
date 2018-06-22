@@ -14,7 +14,6 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var busboy = require('connect-busboy');
 
-// var busboy = require('connect-busboy');
 var multer  = require('multer')
 var storage = multer.diskStorage({
   destination: path.resolve(__dirname, '../client/src/assets/downloads/'),
@@ -40,10 +39,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator()); // this line must be immediately after any of the bodyParser middlewares
 
-// var fs = require('fs');
-// var busboy = require('connect-busboy');
-// app.use(busboy());
-
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.use(session({
@@ -61,9 +56,7 @@ app.use(passport.session());
 passport.use(new LocalStrategy(
   function(username, password, done) {
     db.authenticateUser(username, password, function(matched, user_id) {
-      // console.log('user matched or not', matched)
       if (matched) {
-        // console.log('username for matched user', username)
         return done(null, username)
       } else {
         return done(null, false)
@@ -93,16 +86,10 @@ var authMiddleware = function () {
 }
 
 app.get('/signup', function(req, res) {
-  // console.log('req.user', req.user)
-  // console.log('isauthenticated', req.isAuthenticated())
-  // console.log('serving signup route')
   res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
 });
 
 app.get('/login', function(req, res) {
-  // console.log('req.user', req.user)
-  // console.log('isauthenticated', req.isAuthenticated())
-  // console.log('serving login route')
   res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
 });
 
@@ -115,10 +102,8 @@ app.post('/signupuser', function(req, res) {
 
   var errors = req.validationErrors();
   if (errors) {
-    console.log(`errors: ${JSON.stringify(errors)}`);
     res.send(errors);
   } else {
-    // console.log(req.body)
     var username = req.body.username;
     var email = req.body.email;
     var password = req.body.password;
@@ -133,8 +118,6 @@ app.post('/signupuser', function(req, res) {
               if (err) {
                 console.log(err)
               } else {
-                // console.log('req.user', req.user)
-                // console.log('isauthenticated', req.isAuthenticated())
                 res.send('user created');
               }
             });
@@ -148,7 +131,6 @@ app.post('/signupuser', function(req, res) {
 });
 
 app.post('/loginuser', passport.authenticate('local'), (req, res) => {
-  console.log('req.user in loginuser', req.user)
   res.send(req.user);
 })
 
@@ -161,79 +143,19 @@ app.get('/logoutuser', function(req, res) {
   res.send('logged out')
 });
 
-// app.post('/issues', function (req, res, next) {
-//   console.log('posting')
-
-// let body = [];
-// req.on('data', (chunk) => {
-//   body.push(chunk);
-// }).on('end', () => {
-//   body = Buffer.concat(body).toString();
-//   console.log('body: ', body)
-//   // at this point, `body` has the entire request body stored in it as a string
-// });
-
 app.post('/upload', function(req, res) {
   upload(req, res, function(err) {
     if(err) {
       console.log(err);
     }
-    console.log('req.body: ', req.body)
-    console.log('req.file: ', req.file)
     db.reportIssue(req.body.title, req.body.description, './' + req.file.filename, () => {
       console.log('results: ', results)
     })
   })
   res.status(201).redirect('/issues');
 });
-// res.status(201).send(results).redirect('/issues');
-//send and then depending on state after setState, redirect
-
-  // console.log('req.body.image: ', req.body.image)
-
-
-  // var buffer = require('fs').createWriteStream('output.txt');
-  // var enc = require('base64-stream').encode();
-  // savePixels(pixels, 'png').on('end', function() {
-  //   //Writes a DataURL to  output.txt
-  //   buffer.write("data:image/png;base64,"+enc.read().toString());
-  // }).pipe(enc);
-  // // var buf = new Buffer(req.body.image, 'base64');
-  // // console.log('+++++++++POST TO ISSUES +++++++')
-  // db.reportIssue(req.body.title, req.body.description, req.body.image)
-
-  // // var file = fs.createWriteStream(path.resolve(__dirname, '../client/src/assets/') + 'test');
-  // // buff.pipe(file)
-
-
-
-  // req.on('data ', function(data){
-  //   console.log('readable')
-  //   console.log(req.read());
-  // });
-  // console.log('req.body: ', req.body)
-  // db.reportIssue(req.body.title, req.body.description, req.body.image)
-  // req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-  //   console.log('file: ', file)
-  //   file.on('data', function(data) {
-  //     db.reportIssue(req.body.title, req.body.description, data)
-  //     console.log('data:', data)
-  //     file.on('end', function() {
-  //       res.send(`File ${filename} finished`);
-  //     });
-  //   });
-  // });
-  // req.pipe(req.busboy);
-// })
-
-// app.post('/newgroup', function(req, res) {
-//   console.log('this is the req.body posted to newgroup: ', req.body)
-//   db.createLedger(req.body.user);
-//   res.status(201).redirect('/group');
-// })
 
 app.post('/group', function(req, res) {
-  console.log('REQ.BODY in SERVER', req.body, req.query) // this should have groupname and an array of group members
   var data = {
     groupname: req.body.groupname,
     groupmembers: req.body.user
@@ -244,37 +166,36 @@ app.post('/group', function(req, res) {
 });
 
 app.get('/data', authMiddleware(), function(req, res) {
-  console.log('+++++++++++++++++there is a request to /data++++++++++++++++')
   db.selectIssues(data => {
-    console.log('inside the callback')
-    console.log('++++++++ THIS IS MY DATA INSIDE THE SERVER GET REQUEST: ', data)
     res.status(200).json(data)
   })
 })
 
 app.get('/check', authMiddleware(),function(req, res) {
-  console.log('++++++++check is being called+++++++++++')
-  // res.json('test')
   db.selectIssues
   .then(data => res.send(data))
 })
 
 app.post('/postaddress', authMiddleware(), function(req, res) {
-  db.inserAddress(req.user, req.body.street, req.body.city, req.body.state, req.body.code, req.body.latitude, req.body.longitude, function() {
+  var data = {
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
+    username: req.user,
+    address: req.body.address
+  };
+  db.postAddress(data, function() {
     res.status(201).send('success');
   });
 
 })
 
 app.post('/addtransaction', authMiddleware(), function(req, res) {
-  console.log('req.body: ', req.body)
   db.insertTransaction(req.body.groupname, req.body.bill, req.body.amount, req.body.date, req.body.user, function(result) {
     res.send(result);
   })
 });
 
 app.get('/fetchusers/:group', authMiddleware(), function(req, res) {
-  console.log('REQ.PARAMS', req.params)
   var group = req.params.group;
   db.fetchUsersByGroup(group, function(people) {
     res.send(people);
@@ -296,14 +217,18 @@ app.get('/allactivity', authMiddleware(), function(req, res) {
 
 // route to get username of the currently logged in user
 app.get('/getuser', function(req, res) {
-  console.log('req.user in server', req.user)
   res.send(req.user);
 });
 
 app.get('/getaddress', function(req, res) {
+<<<<<<< HEAD
   console.log('inside the get address+++++++++++++++++')
   console.log('req.user: ', req.user)
   db.getAddress(req.user, function(results) {
+=======
+  var username = req.user;
+  db.getAddress(username, function(results) {
+>>>>>>> 366c679204f4926f2dbdc4b8c4bb9bfc0798f056
     res.status(200).send(results);
   })
 });
@@ -313,7 +238,6 @@ app.get('/groups', authMiddleware(), function(req, res) {
   var username = req.user;
   db.findGroups(username, (err, groups) => {
     if (err) {
-      console.log(err);
       res.sendStatus(500);
     } else {
       res.send(groups);
@@ -328,7 +252,6 @@ app.get('/getuserinfo', authMiddleware(), function(req, res) {
   // for each group, find row of user
   // send this info back to client
   db.findUserInfo(username, function(results) {
-    console.log('RESULTS', results)
     var data = {
       username: username,
       groupInfo: results
@@ -339,7 +262,6 @@ app.get('/getuserinfo', authMiddleware(), function(req, res) {
 
 // to settle up the given 2 users
 app.post('/settleup', authMiddleware(), function(req, res) {
-  // console.log('REQ.BODY in settleup', req.body)
   db.settleUsers(req.body.groupname, req.body.user1, req.body.user2, function(done) {
     if (done) {
       res.send('users settled');
@@ -348,7 +270,6 @@ app.post('/settleup', authMiddleware(), function(req, res) {
 })
 
 app.post('/postaddress', function(req, res) {
-  console.log(req.body);
   var data = {
     latitude: req.body.latitude,
     longitude: req.body.longitude,
@@ -364,7 +285,6 @@ app.post('/postaddress', function(req, res) {
 
 app.post('/deletegroup', function(req, res) {
   var group = req.body.group;
-  console.log(group)
   db.delGroup(group, function(done) {
     if (done) {
       res.send('group deleted');

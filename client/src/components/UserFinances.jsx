@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Nav from './Nav.jsx';
-// import '../assets/images/whiteboard.jpg'
 
 class UserFinances extends React.Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class UserFinances extends React.Component {
   componentDidMount() {
     axios.get('/getuserinfo')
       .then(result => {
-        // console.log('logged in user', result);
         this.setState({
           user: result.data.username,
           groupInfo: result.data.groupInfo
@@ -26,7 +24,6 @@ class UserFinances extends React.Component {
   }
 
   onClick(groupname, user1, user2) {
-    console.log('button clicked', groupname, user1, user2)
     var params = {
       groupname: groupname,
       user1: user1,
@@ -34,10 +31,8 @@ class UserFinances extends React.Component {
     };
     axios.post('/settleup', params)
       .then(result => {
-        console.log(result);
         axios.get('/getuserinfo')
         .then(result => {
-          // console.log('logged in user', result);
           this.setState({
             user: result.data.username,
             groupInfo: result.data.groupInfo

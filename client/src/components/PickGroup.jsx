@@ -17,7 +17,6 @@ class PickGroup extends React.Component {
     // get groups for logged in user
     axios.get('/groups')
     .then(result => {
-      console.log(result)
       this.setState({
         groups: result.data,
         group: result.data[0]
