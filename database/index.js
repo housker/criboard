@@ -3,13 +3,16 @@
 var Sequelize = require('sequelize');
 var db = require('../config.js');
 
-var connection = new Sequelize(db.DBNAME, db.DBUSERNAME, db.DBPASSWORD, {
-  host: db.DBHOST,
-  // port: db.DBPORT,
-  dialect: 'mysql',
-  // dialectOptions: {
-  //   ssl: 'Amazon RDS'
-  // }
+// var connection = new Sequelize(db.DBNAME, db.DBUSERNAME, db.DBPASSWORD, {
+//   host: db.DBHOST,
+//   // port: db.DBPORT,
+//   dialect: 'mysql',
+//   // dialectOptions: {
+//   //   ssl: 'Amazon RDS'
+//   // }
+// });
+
+var connection = new Sequelize(process.env.JAWSDB_URL, {
 });
 
 // var connection = new Sequelize(process.env.DATABASE_URL);
