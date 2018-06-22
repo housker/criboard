@@ -1,10 +1,10 @@
-// module.exports = {
-//   DBNAME: process.env.RDS_DB_NAME ||'sa',
-//   DBUSERNAME: process.env.RDS_USERNAME || 'root',
-//   DBPASSWORD: process.env.RDS_PASSWORD || '',
-//   DBHOST: process.env.RDS_HOSTNAME || 'localhost',
-//   DBPORT: process.env.RDS_PORT || ''
-// };
+module.exports = {
+  DBNAME: process.env.RDS_DB_NAME ||'sa',
+  DBUSERNAME: process.env.RDS_USERNAME || 'root',
+  DBPASSWORD: process.env.RDS_PASSWORD || '',
+  DBHOST: process.env.RDS_HOSTNAME || 'localhost',
+  DBPORT: process.env.RDS_PORT || ''
+};
 
 // module.exports = {
 //   DBNAME: 'sa',

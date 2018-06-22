@@ -64,13 +64,13 @@ class Issues extends React.Component {
     //   console.log('data: ', typeof data)
       var pictures = data.map(instance => images(instance.image))
     // //   console.log('pictures: ', pictures)
-      this.setState({
-        reported: data.filter(issue => issue.status === 'reported'),
-        scheduled: data.filter(issue => issue.status === 'scheduled'),
-        ip: data.filter(issue => issue.status === 'ip'),
-        fixed: data.filter(issue => issue.status === 'fixed'),
-        pictures: pictures
-      }, () => console.log('images(this.state.reported[0].image): ', images(this.state.reported[0].image) ))
+      // this.setState({
+      //   reported: data.filter(issue => issue.status === 'reported'),
+      //   scheduled: data.filter(issue => issue.status === 'scheduled'),
+      //   ip: data.filter(issue => issue.status === 'ip'),
+      //   fixed: data.filter(issue => issue.status === 'fixed'),
+      //   pictures: pictures
+      // }, () => console.log('images(this.state.reported[0].image): ', images(this.state.reported[0].image) ))
 
 
       }

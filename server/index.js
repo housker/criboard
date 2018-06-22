@@ -301,6 +301,8 @@ app.get('/getuser', function(req, res) {
 });
 
 app.get('/getaddress', function(req, res) {
+  console.log('inside the get address+++++++++++++++++')
+  console.log('req.user: ', req.user)
   db.getAddress(req.user, function(results) {
     res.status(200).send(results);
   })
