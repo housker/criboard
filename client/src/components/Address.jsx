@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-import Nav from './Nav.jsx';
-
 class Address extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +45,6 @@ class Address extends React.Component {
   render() {
     return(
       <div>
-      <Nav />
       <div className="jumbotron">
         <h3>Enter address</h3>
           <div className="form-group">

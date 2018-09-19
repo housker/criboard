@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Nav from './Nav.jsx';
 
 class Group extends React.Component {
   constructor(props) {
@@ -73,7 +72,6 @@ class Group extends React.Component {
     });
     return (
       <div>
-        <Nav />
           <div className="jumbotron">
             <form id="regForm" method="POST" onSubmit={() => alert('Your group has been created')}>
             <h3>Create a Group</h3>

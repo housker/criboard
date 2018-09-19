@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import AddTransaction from './AddTransaction.jsx';
-import Nav from './Nav.jsx';
 
 class DeleteGroup extends React.Component {
   constructor(props) {
@@ -49,7 +48,6 @@ class DeleteGroup extends React.Component {
     });
     return (
       <div>
-        <Nav />
         <div className="jumbotron">
         <h3>Delete Group</h3>
           <div className="form-group">

@@ -1,7 +1,7 @@
 // create a database connection and export it
 
 var Sequelize = require('sequelize');
-var db = require('../config.js');
+// var db = require('../config.js');
 
 // var connection = new Sequelize(db.DBNAME, db.DBUSERNAME, db.DBPASSWORD, {
 //   host: db.DBHOST,
@@ -12,7 +12,7 @@ var db = require('../config.js');
 //   // }
 // });
 
-var connection = new Sequelize(process.env.JAWSDB_URL, {
+var connection = new Sequelize(process.env.JAWSDB_URL || require('../config.js').JAWSDB_URL, {
 });
 
 // var connection = new Sequelize(process.env.DATABASE_URL);

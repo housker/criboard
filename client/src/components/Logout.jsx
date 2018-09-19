@@ -25,11 +25,6 @@ class Logout extends React.Component {
   }
 
   render() {
-    if (this.state.onLandingPage) {
-      return (
-        <Redirect to='/' />
-      );
-    }
     return(
       <div>
       <h3>Logout</h3>
@@ -42,3 +37,13 @@ class Logout extends React.Component {
 }
 
 export default Logout;
+
+    // if (this.state.onLandingPage) {
+    //   return (
+    //     <Redirect to='/' />
+    //   );
+    // }
+
+
+
+    //THIS COMPONENET CAN BE DELETED

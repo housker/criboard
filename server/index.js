@@ -39,8 +39,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator()); // this line must be immediately after any of the bodyParser middlewares
 
-app.use(express.static(path.resolve(__dirname, '../client/dist')));
-
 app.use(session({
   secret: 'lalala',
   cookieName: 'criboard',
@@ -81,17 +79,19 @@ var authMiddleware = function () {
     if (req.isAuthenticated()) {
       return next();
     }
-    res.redirect('/');
+    res.redirect('/login');
   }
 }
+
+app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.get('/signup', function(req, res) {
   res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
 });
 
-app.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
-});
+// app.get('/login', function(req, res) {
+//   res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
+// });
 
 app.post('/signupuser', function(req, res) {
   // data validation using express-validator
@@ -284,6 +284,10 @@ app.post('/deletegroup', function(req, res) {
       res.send('group deleted');
     }
   });
+});
+
+app.get('/login', function(req, res) {
+  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
 });
 
 // protect all routes other than landing, login, and signup pages

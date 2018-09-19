@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Nav from './Nav.jsx';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
@@ -121,7 +120,6 @@ class Issues extends React.Component {
   render() {
     return(
       <div>
-      <Nav />
       <div className="jumbotron">
       {this.state.report ? <Issnew /> :
       <div className="issues grid">

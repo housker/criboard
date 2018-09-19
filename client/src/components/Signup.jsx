@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-
 import { Button } from 'react-bootstrap';
 
 class Signup extends React.Component {
@@ -23,64 +22,9 @@ class Signup extends React.Component {
     });
   }
 
-  onSubmit() {
-    if (this.state.username === '' || this.state.email === '' || this.state.password === '')  {
-      alert('username, email and password fields cannot be empty. Enter new values');
-      // stay on signup page
-    } else {
-        var data = {
-          username: this.state.username,
-          email: this.state.email,
-          password: this.state.password,
-          passwordMatch: this.state.passwordMatch
-        };
-        axios.post('./signupuser', data)
-          .then(result => {
-            console.log(result);
-            if (result.data === 'user created') {
-              alert(`Info for ${this.state.username} has been saved`);
-              // redirect to Dashboard after signup
-              this.setState({
-                onDashboard: true
-              })
-            } else if (result.data === 'user already exists') {
-              alert(`${this.state.username} already exists. Please login as ${this.state.username} or signup as a different user`)
-              // redirect to landing page
-              this.setState({
-                onLandingPage: true
-              })
-            } else {
-              var errors = result.data;
-              var messages = errors.map((error) => {
-                return error.msg;
-              });
-              alert(messages);
-              this.setState({
-                username: '',
-                email: '',
-                password: '',
-                passwordMatch: ''
-              });
-            }
-          })
-          .catch(err => {
-            console.log(err);
-          })
-    }
-  }
-
   render() {
-    if (this.state.onDashboard) {
-      return (
-        <Redirect to="/dashboard" />
-      );
-    } else if (this.state.onLandingPage) {
-      return (
-        <Redirect to="/" />
-      );
-    }
     return (
-      <div className="jumbotron">
+      <div>
         <h1 className="display-4">Signup</h1>
           <div className="form-group">
             <label>Username</label>&nbsp;&nbsp;
@@ -98,7 +42,7 @@ class Signup extends React.Component {
             <label>Re enter Password</label>&nbsp;&nbsp;
             <input type="password" className="form-control" placeholder="Re enter Password" name="passwordMatch" value={this.state.passwordMatch} onChange={this.onChange.bind(this)} />
           </div>
-          <button className="btn btn-primary" onClick={this.onSubmit.bind(this)}>Submit</button>
+          <button className="btn btn-primary" onClick={() => this.props.onSignup(this.state.username, this.state.email, this.state.password, this.state.passwordMatch)}>Submit</button>
       </div>
     );
   }

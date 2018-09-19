@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Nav from './Nav.jsx';
-// import '../assets/images/whiteboard.jpg'
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -11,7 +10,8 @@ class Dashboard extends React.Component {
       latitude: 42.09,
       longitude: -72.58,
       address: '123 Main St; Springfield, MA 01105',
-      // whiteboard: 'Hey guys, Am going to be out of town next Monday! Someone pick up my chores? --Sam',
+      street: '',
+      city: '',
       user: ''
     };
   }
@@ -22,6 +22,8 @@ class Dashboard extends React.Component {
       this.setState({
       user: result.data.username,
       address: result.data.address,
+      street: result.data.address.split(';')[0],
+      city: result.data.address.split(';')[1],
       latitude: result.data.latitude,
       longitude: result.data.longitude
       }, () => {
@@ -33,14 +35,7 @@ class Dashboard extends React.Component {
             id: 'mapbox.streets',
             accessToken: 'pk.eyJ1IjoiaG91c2tlciIsImEiOiJjamh2aXMwODcwem5uM2twMzA3cmZsbnBvIn0.rz3s-qyoAcFzzrOd91YdYg'
         }).addTo(mymap);
-
-
       });
-
-      // axios.get('/getaddress')
-      // .then(result => {
-      //   // result.data should have latitude, longitude, address
-          // use this to setState
     var mymap = L.map('mapid').setView([this.state.latitude, this.state.longitude], 15);
     var marker = L.marker([this.state.latitude, this.state.longitude]).addTo(mymap);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -61,19 +56,18 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    var cardStyle = {'boxSizing': 'border-box', 'width': '80vw', 'height': '80vh', 'zIndex': '9', 'backgroundColor': 'rgba(252, 150, 15, 0.4)', 'margin': '0 auto', 'top': '3vh'}
+    var mapStyle = {'height': '70%', 'zIndex': '10', 'margin': '3vh'}
     return(
-      <div>
-      <Nav />
-      <div className="jumbotron">
-        <h3>Dashboard for {this.state.user}</h3>
-        <div id="mapid"></div>
-        <ul className="dashboard-bullets">
-          <li>Address: {this.state.address}</li>
-         {/*} <li>Notifications</li>
-          <li>User specific info</li>*/}
-        </ul>
-       {/*} <textarea className="whiteboard" name="message" rows="10" cols="30" defaultValue={this.state.whiteboard}></textarea> */}
+      <div className="dashboard-container">
+        <div className="card" style={cardStyle}>
+          <div id="mapid" style={mapStyle}></div>
+        <div className="card-body">
+          <h5 className="card-title display-4">{this.state.street}</h5>
+          <h5 className="card-title display-4">{this.state.city}</h5>
+        </div>
       </div>
+      <div className="plant"></div>
       </div>
     )
   }

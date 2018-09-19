@@ -1,7 +1,12 @@
+//this is vestigial and is only here for debugging if any unforeseen issues arise in the future
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import axios from 'axios';
 
+import Nav from '../components/Nav.jsx';
+import App from '../components/App.jsx';
 import Landing from '../components/Landing.jsx';
 import Login from '../components/Login.jsx';
 import Signup from '../components/Signup.jsx';
@@ -22,28 +27,27 @@ import Logout from '../components/Logout.jsx';
 
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-const AppRouter = () => (
-  <BrowserRouter>
-    <div>
-    <Switch>
-      <Route exact path='/' component={Landing} />
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/signup' component={Signup} />
-      <Route exact path="/issues" component={Issues}/>
-      <Route exact path="/book" component={Issbook}/>
-      <Route exact path="/supplies" component={Issupplies}/>
-      <Route exact path="/address" component={Address}/>
-      <Route exact path="/group" component={Group}/>
-      <Route exact path="/help" component={Help}/>
-      <Route exact path="/dashboard" component={Dashboard}/>
-      <Route exact path="/pickgroup" component={PickGroup}/>
-      <Route exact path="/deletegroup" component={DeleteGroup}/>
-      <Route exact path="/activity" component={Activity}/>
-      <Route exact path="/userfinances" component={UserFinances}/>
-      <Route exact path="/logout" component={Logout}/>
-    </Switch>
-    </div>
-  </BrowserRouter>
-);
+class AppRouter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: '',
+      login: true,
+      signup: false,
+    };
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+        <Switch>
+          <Route path='/' render={(props) => <App {...props} user={this.state.user} onSubmit={this.onSubmit}/>} />
+        </Switch>
+        </div>
+      </BrowserRouter>
+    )
+  }
+}
 
 export default AppRouter;

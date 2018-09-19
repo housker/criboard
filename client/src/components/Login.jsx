@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 
@@ -21,60 +20,24 @@ class Login extends React.Component {
     });
   }
 
-  onSubmit() {
-    if (this.state.username === '' || this.state.password === '')  {
-      this.setState({
-            onLandingPage: true
-      })
-    }
-    var data = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    axios.post('./loginuser', data)
-      .then(result => {
-        console.log('in loginuser', result.data);
-        alert(`${this.state.username} is logged in!`)
-        if (result) {
-          this.setState({
-            onDashboard: true
-          })
-        } else {
-          this.setState({
-            onLandingPage: true
-          })
-        }
-      })
-      .catch(err => {
-        alert('Incorrect username and/or password');
-        this.setState({
-            onLandingPage: true
-        })
-      })
-  }
-
   render() {
-    if (this.state.onDashboard) {
-      return (
-        <Redirect to="/dashboard" />
-      );
-    } else if (this.state.onLandingPage) {
-      return (
-        <Redirect to="/" />
-      );
-    }
     return (
-      <div className="jumbotron">
-      <h1 className="display-4">Login</h1>
-        <div className="form-group">
-          <label>Username</label>&nbsp;&nbsp;
-          <input type="email" className="form-control" placeholder="Enter username" name="username" value={this.state.usernamel} onChange={this.onChange.bind(this)} />
+      <div className="login-container">
+        <div className="noaccount">
+        <span>Don't have an account?</span>
+        <Button className="btn-login" onClick={this.props.signup}>Create one</Button>
         </div>
-        <div className="form-group">
-          <label>Password</label>&nbsp;&nbsp;
-          <input type="password" className="form-control" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange.bind(this)} />
+        <div className="login-form">
+          <h2 className="display-4">Sign in to</h2>
+          <h1 className="display-1">Criboard</h1>
+          <div className="form-group">
+            <input type="email" className="form-control" placeholder="Enter username" name="username" value={this.state.usernamel} onChange={this.onChange.bind(this)} />
+          </div>
+          <div className="form-group">
+            <input type="password" className="form-control" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange.bind(this)} />
+          </div>
+          <Button className="btn-login" onClick={() => this.props.onSubmit(this.state.username, this.state.password)}>Sign in</Button>
         </div>
-        <Button className="btn btn-primary" onClick={this.onSubmit.bind(this)}>Submit</Button>
       </div>
     );
   }

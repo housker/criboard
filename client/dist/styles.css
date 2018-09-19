@@ -1,3 +1,7 @@
+* {
+  color: rgb(149, 88, 10) !important;
+}
+
 .navbar {
   text-align: right;
 }
@@ -11,3 +15,163 @@
   width: 50%; /* Set a width if needed */
   display: block; /* Make the buttons appear below each other */
 }
+
+.dashboard-container {
+  position: relative;
+  height: 100vh;
+  background-image: linear-gradient(#fdd8a3, 92%, #fbcc95);
+}
+
+.map-container {
+  position: absolute;
+  top: 80px;
+  left: 15%;
+  width: 100%;
+  background-color: #fbcc95 !important;
+}
+
+#mapid {
+  opacity: 1!important;
+}
+
+.plant {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 190px;
+  width: 300px;
+  background: #fdd29b url("rubberplant.jpg") no-repeat;
+}
+
+.login-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url("priscilla.jpg") center/cover no-repeat fixed;
+}
+
+.login-form {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  min-width: 300px;
+  margin-left: -150px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.btn-login {
+  background-color: #e4e4e4 !important;
+}
+
+.btn-login:hover {
+  background-color: #b8babd !important;
+}
+
+.noaccount {
+  position: absolute;
+  display: inline;
+  top: 2rem;
+  right: 2rem;
+  font-size: 1.6rem;
+  margin: 1rem;
+}
+
+.noaccount > span {
+  padding: 30px;
+}
+
+
+.transaction-container {
+  position: relative;
+  padding: 30px;
+  width: 100vw;
+  height: 100vh;
+  background: url("erik.jpg") center/cover no-repeat fixed;
+}
+
+.inner-transaction {
+  position: relative;
+  display: flex;
+  padding: 4px;
+  margin: 0 auto;
+  min-height: 30vh;
+  width: 60vw;
+  background-color: rgba(183, 187, 204, 0.7) !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pick-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  max-width: 80% !important;
+  min-width: 200px;
+}
+
+.pick-button {
+  position: relative;
+  padding: 5px;
+  bottom: 0px;
+  display: flex;
+  margin: 5px 3px 3px 3px !important;
+}
+
+.add-transaction {
+  position: absolute;
+  margin: 4px;
+}
+
+.transaction-header {
+  height: 30px;
+}
+
+.transaction-form {
+  display: flex;
+  text-align: center !important;
+  width: 60%;
+}
+
+.form-control * {
+  text-align: center !important;
+  width: 80%;
+}
+
+.option {
+  background-color: black;
+  text-align: center !important;
+}
+
+select {
+  background-color: black;
+  text-align: center !important;
+}
+
+label {
+  font-style: normal !important;;
+}
+
+.back-icon {
+  fill: rgb(149, 88, 10) !important;
+  width: 25px;
+}
+
+.btn {
+  background-color: #e4e4e4 !important;
+}
+
+.btn:hover {
+  background-color: #b8babd !important;
+}
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Nav from './Nav.jsx';
 
 class UserFinances extends React.Component {
   constructor(props) {
@@ -46,7 +45,6 @@ class UserFinances extends React.Component {
     if(this.state.groupInfo.length === 0) {
       return(
       <div>
-      <Nav />
       <div className="jumbotron">
         <h3>User is not in any groups yet. Add user to a group.</h3>
       </div>
@@ -109,7 +107,6 @@ class UserFinances extends React.Component {
   // return toRender
   return (
     <div>
-      <Nav />
       <div className="jumbotron">
       <h3>{this.state.user}'s finances</h3>
       {toRender}
