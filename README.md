@@ -1,6 +1,8 @@
 # Criboard
 
-An app to track/split monthly expenses, maintenance issues, etc. and help roommates and landlords stay organized.
+![Imgur](https://i.imgur.com/4b4AlcY.png)
+
+[An app to track/split monthly expenses, maintenance issues, etc. and help roommates and landlords stay organized.](https://safe-tundra-98409.herokuapp.com)
 
 ## Team
 
