@@ -18,7 +18,6 @@
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
 1. [Team](#team)
-1. [Contributing](#contributing)
 
 ## Usage
 
@@ -46,6 +45,6 @@ From within the root directory:
 
 npm install
 
-### Roadmap
+### Tasks
 
 View the project roadmap [here](https://github.com/rpt06-squealing-alligators/criboard/projects)
