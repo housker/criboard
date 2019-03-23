@@ -49,8 +49,3 @@ npm install
 ### Roadmap
 
 View the project roadmap [here](https://github.com/rpt06-squealing-alligators/criboard/projects)
-
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
